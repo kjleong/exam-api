@@ -61,13 +61,16 @@ class UserExamsController < ApplicationController
       end
     end
 
-    $stderr.puts @render_output
-
     # return success if all is good, assigning user
     if @render_output.nil?
       render json: "User Successfully Assigned To Exam" , status: 200
     else
-      render json: {:errors => @render_output[:message]}, status: @render_output[:code]
+      error_data = {
+          status: "error",
+          code: @render_output[:code],
+          message: @render_output[:message]
+      }
+      render json: error_data, status: 400
     end
 
   end
@@ -81,8 +84,8 @@ class UserExamsController < ApplicationController
   def set_render_output(message,code)
     if @render_output.nil?
       @render_output = {
-          message:message,
-          code:code,
+          message: message,
+          code: code,
       }
     end
   end
