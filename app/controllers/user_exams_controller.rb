@@ -47,7 +47,7 @@ class UserExamsController < ApplicationController
       end
     end
 
-    # user_exam already exists
+    # user_exam assignment already exists
     if user && exam && UserExam.find_by(user_id: user.id, exam_id: exam.id)
       set_render_output "User #{user.id} already assigned to specified exam #{exam.id}", 400
     else

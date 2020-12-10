@@ -4,6 +4,9 @@ class Exam < ApplicationRecord
   belongs_to :college
 
   def belongs_to_college(college)
+    if college.nil?
+      return false
+    end
     self.college.id == college.id
   end
 
