@@ -1,3 +1,3 @@
 class ExamSerializer < ActiveModel::Serializer
-  attributes :id, :user_id, :college_id, :name
+  attributes :id, :college_id, :name
 end

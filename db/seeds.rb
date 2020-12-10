@@ -87,26 +87,22 @@ exam_data = [
     {
         name: "Science - Mid Term 1",
         college: College.find_by_name("Hyrule College of Medicine"),
-        user: User.find_by(first_name:"Ash",last_name:"Ketchum"),
         exam_window_id: 1,
     },
     {
         name: "Fire Types - Mid Term 2",
         college: College.find_by_name("Pokemon Community College"),
-        user: User.find_by(first_name:"Gary",last_name:"Oak"),
         exam_window_id: 2,
     },
     {
         name: "Bosses - Final",
         college: College.find_by_name("Mushroom Kingdom University"),
-        user: User.find_by(first_name:"Alexander",last_name:"Hamilton"),
         exam_window_id: 3,
     }
 ]
 exam_data.each do |exam|
   e = Exam.new
   e.name = exam[:name]
-  e.user_id = exam[:user].id
   e.college_id = exam[:college].id
   e.exam_window_id = exam[:exam_window_id]
   e.save!

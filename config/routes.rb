@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resources :colleges
   resources :users
 
-  post '/user_exam/new', to: 'user_exam#create'
+  post '/user_exams/new', to: 'user_exams#create'
 end
