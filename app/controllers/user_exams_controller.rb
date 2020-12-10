@@ -7,6 +7,7 @@ class UserExamsController < ApplicationController
     validate_start_date(params[:start_time])
     validate_name(params[:first_name])
     validate_name(params[:last_name])
+    validate_phone_number(params[:phone_number])
 
     # check college exists
     college = College.find_by_id(params[:college_id])
@@ -48,7 +49,7 @@ class UserExamsController < ApplicationController
 
     # user_exam already exists
     if user && exam && UserExam.find_by(user_id: user.id, exam_id: exam.id)
-      set_render_output "User #{user.id} already assigned to specified exam #{exam_id}", 400
+      set_render_output "User #{user.id} already assigned to specified exam #{exam.id}", 400
     else
       begin
         user_exam = UserExam.new
@@ -96,7 +97,7 @@ class UserExamsController < ApplicationController
   end
 
   def validate_phone_number(phone_number)
-    if /^d{10}$/ === phone_number
+    if phone_number.scan(/\D/).empty? && phone_number.length == 10
       true
     else
       set_render_output("#{phone_number} must be a 10 digit string",400)

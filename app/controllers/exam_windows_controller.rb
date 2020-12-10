@@ -31,7 +31,7 @@ class ExamWindowsController < ApplicationController
   end
 
   def exam_window_params
-    params.require(:exam_window).permit(:first_name,:last_name,:phone_number)
+    params.require(:exam_window).permit(:start,:end)
   end
   
 end
